@@ -43,6 +43,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/experiences/{experience_id}/comment', [CommentController::class, 'store'])->name('comment.store');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::post('/checkout/{experience}', 'CheckoutController@processPayment')->name('checkout.process');
+    Route::post('/process-payment/{experience}', 'CheckoutController@processPayment')->name('process-payment');
+});
+
+
 
 //Rotas perfil:
 Route::middleware('auth')->group(function () {

@@ -30,6 +30,11 @@
                                     <p class="text-gray-800 font-bold">Categoria: {{ $experience['category'] }}</p>
 
                                     <a href="{{ route('comment.create', ['experience_id' => $experience['id']]) }}" class="text-blue-500 hover:underline">Comentar</a>
+                                     <!-- Botão de Compra -->
+                                     <form action="{{ route('checkout.process', $experience->id) }}" method="post">
+                                        @csrf
+                                    <button type="submit" class="bg-green-500 text-white py-2 px-4 rounded">Comprar</button>
+                                    </form>
                                 </div>
                             </div>
 
