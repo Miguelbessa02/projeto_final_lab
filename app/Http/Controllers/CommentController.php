@@ -49,6 +49,14 @@ class CommentController extends Controller
         return redirect(RouteServiceProvider::HOME)->with('success', 'Comment created successfully!');
     }
 
+    public function showComments($experience_id)
+    {   
+        $experience = Experience::findOrFail($experience_id);
+        $comments = Comment::where('experience_id', $experience_id)->get();
+
+        return view('pages.show_comments', compact('experience', 'comments'));
+    }
+
     /**
      * Display the specified resource.
      */

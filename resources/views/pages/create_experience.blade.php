@@ -13,27 +13,27 @@
                 @csrf
 
                 <div class="mb-2 ">
-                    <label for="title" class="block text-gray-700 text-lg font-bold mb-2">Title:</label>
+                    <label for="title" class="block text-gray-700 text-lg font-bold mb-2">Titulo:</label>
                     <input type="text" class="form-input pr-8" id="title" name="title" required>
                 </div>
 
                 <div class="mb-2 ">
-                    <label for="description" class="block text-gray-700 text-lg font-bold mb-2">Description:</label>
+                    <label for="description" class="block text-gray-700 text-lg font-bold mb-2">Descrição:</label>
                     <textarea class="form-input pr-8" id="description" name="description" required></textarea>
                 </div>
 
                 <div class="mb-2 ">
-                    <label for="price" class="block text-gray-700 text-lg font-bold mb-2">Price:</label>
+                    <label for="price" class="block text-gray-700 text-lg font-bold mb-2">Preço:</label>
                     <input type="number" class="form-input pr-8" id="price" name="price" required>
                 </div>
 
                 <div class="mb-2 ">
-                    <label for="address" class="block text-gray-700 text-lg font-bold mb-2">Address:</label>
+                    <label for="address" class="block text-gray-700 text-lg font-bold mb-2">Morada:</label>
                     <input type="text" class="form-input pr-8" id="address" name="address" required>
                 </div>
 
                 <div class="mb-4 ">
-                    <label for="category" class="block text-gray-700 text-lg font-bold mb-2">Category:</label>
+                    <label for="category" class="block text-gray-700 text-lg font-bold mb-2">Categoria:</label>
                     <select class="form-select pr-8" id="category" name="category" required>
                         <option value="sport">Sport</option>
                         <option value="culture">Culture</option>
@@ -42,7 +42,7 @@
                     </select>
                 </div>
 
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Create Experience</button>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Criar Anuncio</button>
             </form>
         </div>
     </div>

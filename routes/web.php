@@ -39,8 +39,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 // Rotas comentarios anuncios:
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/experiences/{experience_id}/comments', [CommentController::class, 'showComments'])->name('experience.comments');
     Route::get('/experiences/{experience_id}/comment/create', [CommentController::class, 'create'])->name('comment.create');
     Route::post('/experiences/{experience_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+});
+
+// Rotas likes anuncios:
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/experiences/{experience_id}/like/create', [CommentController::class, 'create'])->name('like.create');
+    Route::post('/experiences/{experience_id}/like', [CommentController::class, 'store'])->name('like.store');
 });
 
 

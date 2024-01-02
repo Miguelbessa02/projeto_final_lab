@@ -15,21 +15,24 @@
                         <button onclick="filterByCategory('culture')" class="bg-blue-500 text-black py-2 px-4 rounded">Cultura</button>
                         <button onclick="filterByCategory('gastronomy')" class="bg-blue-500 text-black py-2 px-4 rounded">Gastronomia</button>
                         <button onclick="filterByCategory('nature')" class="bg-blue-500 text-black py-2 px-4 rounded">Natureza</button>
+                        <!--<button onclick="window.location='{{url('/dashboard')}} '" class="bg-blue-500 text-black py-2 px-4 rounded">Feed</button> -->
                     </div>
 
                     <!-- Seção de exibição das atividades -->
                     <div id="activities-section" class="flex flex-wrap -mx-2">
                         @foreach ($experiences as $index => $experience)
                             <div class="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 px-2 mb-4 experience {{ $experience['category'] }}">
-                                <div class="bg-white p-4 rounded border">
+                                <div class="bg-white  rounded border pl-4 py-4 pr-20">
                                     <img src="{{ $experience['image'] }}" alt="{{ $experience['title'] }}" class="w-full mb-2 rounded" />
                                     <h3 class="text-lg font-semibold">{{ $experience['title'] }}</h3>
-                                    <p class="text-gray-700">{{ $experience['description'] }}</p>
+                                    <p class="text-gray-700">Descrição: {{ $experience['description'] }}.</p>
                                     <p class="text-gray-800 font-bold">Preço: {{ $experience['price'] }}€</p>
-                                    <p class="text-gray-800 font-bold">Morada: {{ $experience['address'] }}</p>
-                                    <p class="text-gray-800 font-bold">Categoria: {{ $experience['category'] }}</p>
-
-                                    <a href="{{ route('comment.create', ['experience_id' => $experience['id']]) }}" class="text-blue-500 hover:underline">Comentar</a>
+                                    <p class="text-gray-800 font-bold">Morada: {{ $experience['address'] }}.</p>
+                                    <p class="text-gray-800 font-bold mb-6">Categoria: {{ $experience['category'] }}.</p>
+                                    
+                                    <a href="{{ route('like.create', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border border-blue-500 px-2 py-0 rounded">Like</a>
+                                    <a href="{{ route('comment.create', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border border-blue-500 px-2 py-0 rounded">Comentar</a>
+                                    <a href="{{ route('experience.comments', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border border-blue-500 px-2 py-0 rounded">Comentarios</a>
                                 </div>
                             </div>
 
