@@ -20,8 +20,17 @@ class CityFactory extends Factory
      */
     public function definition(): array
     {
+
+        $cities = [
+            'Berlim', 'Buenos Aires', 'Sydney', 'Rio de Janeiro', 'Bruxelas', 'Pequim', 'Toronto', 'Seul',
+            'Copenhague', 'Nova Iorque', 'Los Angeles', 'Chicago', 'Madrid', 'Cairo', 'Paris', 'Helsinque', 
+            'Atenas', 'Amsterdã', 'Budapeste', 'Nova Deli', 'Roma', 'Tóquio', 'Amã', 'Doha', 'Nairobi', 
+            'Luxemburgo', 'Beirute', 'Cidade do México', 'Kuala Lumpur', 'Oslo', 'Lagos', 'Lisboa', 'Porto', 
+            'Islamabad', 'Moscou', 'Bucareste', 'Londres', 'Zurique', 'Estocolmo', 'Istambul', 'Bangkok', 'Kiev'
+        ];
+
         return [
-            'name' => $this->faker->city,
+            'name' => $this->faker->randomElement($cities),
             'country_id' => Country::all()->random()->id,
         ];
     }

@@ -19,8 +19,17 @@ class CountryFactory extends Factory
      */
     public function definition(): array
     {
+
+        $countries = [
+            'Alemanha', 'Argentina', 'Australia', 'Brasil', 'Bélgica', 'China', 'Canadá', 'Coreia do Sul', 
+            'Dinamarca', 'Estados Unidos', 'Espanha', 'Egito', 'França', 'Finlândia', 'Grécia', 'Holanda',
+            'Hungria', 'Índia', 'Itália', 'Japão', 'Jordânia', 'Qatar', 'Quênia', 'Luxemburgo', 'Líbano',
+            'México', 'Malásia', 'Noruega', 'Nigéria', 'Portugal', 'Paquistão', 'Rússia', 'Romênia', 
+            'Reino Unido', 'Suíça', 'Suécia', 'Turquia', 'Tailândia', 'Ucrânia'
+        ];
+
         return [
-            'name' => $this->faker->country,
+            'name' => $this->faker->randomElement($countries),
         ];
     }
 }
