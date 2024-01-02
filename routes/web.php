@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,13 +30,19 @@ Route::get('/about', function () {
 })->middleware(['auth', 'verified'])->name('about');
 
 
-
 // Rotas feed anuncios:
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [ExperienceController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/create', [ExperienceController::class, 'create'])->name('dashboard.create');
     Route::post('/dashboard', [ExperienceController::class, 'store'])->name('dashboard');
 });
+
+// Rotas comentarios anuncios:
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/experiences/{experience_id}/comment/create', [CommentController::class, 'create'])->name('comment.create');
+    Route::post('/experiences/{experience_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+});
+
 
 //Rotas perfil:
 Route::middleware('auth')->group(function () {

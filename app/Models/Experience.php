@@ -11,6 +11,15 @@ class Experience extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'description',
+        'price',
+        'address',
+        'category',
+        'user_id',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(City::class);

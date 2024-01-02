@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Experience;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
 
 class CommentController extends Controller
 {
@@ -12,15 +15,16 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::all();
+        return view('dashboard', compact('comments'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($experience_id)
     {
-        //
+        return view('pages.create_comment', ['experience_id' => $experience_id]);
     }
 
     /**
@@ -28,7 +32,21 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'comment' => ['required', 'string', 'max:255'],
+            'experience_id' => ['required', 'numeric'], 
+        ]);
+
+        // Obter o ID do usuário autenticado
+        $user_id = Auth::id();
+
+        $comment = Comment::create([
+            'user_id' => $user_id, 
+            'experience_id' => $request->experience_id,
+            'comment' => $request->comment,
+        ]);
+
+        return redirect(RouteServiceProvider::HOME)->with('success', 'Comment created successfully!');
     }
 
     /**

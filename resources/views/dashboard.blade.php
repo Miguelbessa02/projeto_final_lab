@@ -11,10 +11,10 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <!-- Seção dos botões -->
                     <div id="category-buttons" class="mb-4">
-                        <button onclick="filterByCategory('desporto')" class="bg-blue-500 text-black py-2 px-4 rounded">Desporto</button>
-                        <button onclick="filterByCategory('cultura')" class="bg-blue-500 text-black py-2 px-4 rounded">Cultura</button>
-                        <button onclick="filterByCategory('gastronomia')" class="bg-blue-500 text-black py-2 px-4 rounded">Gastronomia</button>
-                        <button onclick="filterByCategory('natureza')" class="bg-blue-500 text-black py-2 px-4 rounded">Natureza</button>
+                        <button onclick="filterByCategory('sport')" class="bg-blue-500 text-black py-2 px-4 rounded">Desporto</button>
+                        <button onclick="filterByCategory('culture')" class="bg-blue-500 text-black py-2 px-4 rounded">Cultura</button>
+                        <button onclick="filterByCategory('gastronomy')" class="bg-blue-500 text-black py-2 px-4 rounded">Gastronomia</button>
+                        <button onclick="filterByCategory('nature')" class="bg-blue-500 text-black py-2 px-4 rounded">Natureza</button>
                     </div>
 
                     <!-- Seção de exibição das atividades -->
@@ -25,9 +25,15 @@
                                     <img src="{{ $experience['image'] }}" alt="{{ $experience['title'] }}" class="w-full mb-2 rounded" />
                                     <h3 class="text-lg font-semibold">{{ $experience['title'] }}</h3>
                                     <p class="text-gray-700">{{ $experience['description'] }}</p>
-                                    <p class="text-gray-800 font-bold">Preço: {{ $experience['price'] }}</p>
+                                    <p class="text-gray-800 font-bold">Preço: {{ $experience['price'] }}€</p>
+                                    <p class="text-gray-800 font-bold">Morada: {{ $experience['address'] }}</p>
+                                    <p class="text-gray-800 font-bold">Categoria: {{ $experience['category'] }}</p>
+
+                                    <a href="{{ route('comment.create', ['experience_id' => $experience['id']]) }}" class="text-blue-500 hover:underline">Comentar</a>
                                 </div>
                             </div>
+
+                            
 
                             @if (($index + 1) % 4 == 0)
                                 <div class="w-full my-4"></div>

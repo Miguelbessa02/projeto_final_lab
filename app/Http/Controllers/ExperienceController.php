@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Experience;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Providers\RouteServiceProvider;
 
 class ExperienceController extends Controller
 {
@@ -12,46 +14,7 @@ class ExperienceController extends Controller
      */
     public function index()
     {
-        
-        $experiences = [
-            [
-                'title' => 'Atividade 1',
-                'description' => 'Descrição da atividade 1.',
-                'image' => '/caminho/para/atividade1.jpg',
-                'price' => 50, 
-                'category' => 'desporto',
-            ],
-            [
-                'title' => 'Atividade 2',
-                'description' => 'Descrição da atividade 2.',
-                'image' => '/caminho/para/atividade2.jpg',
-                'price' => 60, 
-                'category' => 'cultura',
-            ],
-            [
-                'title' => 'Atividade 3',
-                'description' => 'Descrição da atividade 3.',
-                'image' => '/caminho/para/atividade3.jpg',
-                'price' => 60, 
-                'category' => 'cultura',
-            ],
-            [
-                'title' => 'Atividade 4',
-                'description' => 'Descrição da atividade 4.',
-                'image' => '/caminho/para/atividade4.jpg',
-                'price' => 60, 
-                'category' => 'cultura',
-            ],
-            [
-                'title' => 'Atividade 5',
-                'description' => 'Descrição da atividade 5.',
-                'image' => '/caminho/para/atividade5.jpg',
-                'price' => 60, 
-                'category' => 'cultura',
-            ],
-            
-        ];
-        
+        $experiences = Experience::all();
         return view('dashboard', compact('experiences'));
     }
     
@@ -61,7 +24,7 @@ class ExperienceController extends Controller
      */
     public function create()
     {
-        return view('dashboard');
+        return view('pages.create_experience');
     }
 
     /**
@@ -69,13 +32,28 @@ class ExperienceController extends Controller
      */
     public function store(Request $request)
     {
-        $experience = new Experience;
-        $experience->title = $request->title;
-        $experience->description = $request->description;
-        $experience->price = $request->price;
-        $experience->address = $request->address;
-        $experience->save();
-        return redirect('/experience');
+        $request->validate([
+            'title' => ['required', 'string', 'max:255', 'unique:experiences'],
+            'description' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'address' => ['required', 'string', 'max:255'],
+            'category' => ['required', 'string', 'in:sport,culture,nature,gastronomy'],
+            
+        ]);
+
+        // Obter o ID do usuário autenticado
+        $user_id = Auth::id();
+
+        $experience = Experience::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'price' => $request->price,
+            'address' => $request->address,
+            'category' => $request->category, 
+            'user_id' => $user_id, 
+        ]);
+
+        return redirect(RouteServiceProvider::HOME)->with('success', 'Experience created successfully!');
     }
 
     /**
