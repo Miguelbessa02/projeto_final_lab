@@ -30,9 +30,16 @@
                                     <p class="text-gray-800 font-bold">Morada: {{ $experience['address'] }}.</p>
                                     <p class="text-gray-800 font-bold mb-6">Categoria: {{ $experience['category'] }}.</p>
                                     
-                                    <a href="{{ route('like.create', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border border-blue-500 px-2 py-0 rounded">Like</a>
+                                    <form method="post" action="{{ route('like.store') }}" class="inline-block">
+                                        @csrf
+                                        <input type="hidden" name="experience_id" value="{{ $experience['id'] }}">
+                                        <button type="submit" class="text-blue-500 no-underline border border-blue-500 px-2 py-0 rounded">Like</button>
+                                    </form>
+
+                                    <span class="text-gray-800 font-bold ml-2">Likes: {{ $experience->likes->count() }}</span>
+                            
                                     <a href="{{ route('comment.create', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border border-blue-500 px-2 py-0 rounded">Comentar</a>
-                                    <a href="{{ route('experience.comments', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border border-blue-500 px-2 py-0 rounded">Comentarios</a>
+                                    <a href="{{ route('experience.comments', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border border-blue-500 px-2 py-0 rounded">Comentários</a>
                                 </div>
                             </div>
 
