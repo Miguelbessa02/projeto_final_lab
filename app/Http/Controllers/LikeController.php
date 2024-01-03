@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 
 class LikeController extends Controller
 {
@@ -36,7 +39,18 @@ class LikeController extends Controller
         // Obter o ID do usuário autenticado
         $user_id = Auth::id();
 
-        $comment = Comment::create([
+        // Verificar se o usuário já deu like no anuncio:
+        $existingLike = Like::where('user_id', $user_id)
+                            ->where('experience_id', $request->experience_id)
+                            ->first();
+
+        if ($existingLike) {
+            
+            $existingLike->delete();
+            return redirect()->back()->with('success', 'Like removido com sucesso!');
+        }
+
+        $like = Like::create([
             'user_id' => $user_id, 
             'experience_id' => $request->experience_id,
         ]);
