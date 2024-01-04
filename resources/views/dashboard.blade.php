@@ -37,9 +37,9 @@
                                         <form method="post" action="{{ route('like.store') }}" class="mb-2">
                                             @csrf
                                             <input type="hidden" name="experience_id" value="{{ $experience['id'] }}">
-                                            <span class="text-gray-800 font-bold ml-2">Likes: {{ $experience->likes->count() }}</span>
+                                            <span class="text-gray-800 font-bold ml-2 pr-1">Likes: {{ $experience->likes->count() }}</span>
                                             <button type="submit" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Like</button>
-                                            <button type="submit" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comprar</button>
+                                            <button onclick="window.location='{{ route('dashboard', ['experience_id' => $experience['id']]) }}'" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comprar</button>
                                         </form>
                                         
                                         <div class="flex space-x-2">
