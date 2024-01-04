@@ -57,4 +57,9 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function get(Request $request)
+    {
+        return view('profile.anuncios_users');
+    }
 }

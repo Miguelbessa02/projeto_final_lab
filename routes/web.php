@@ -52,6 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 //Rotas perfil:
 Route::middleware('auth')->group(function () {
+    Route::get('/profile/experiences', [ProfileController::class, 'get'])->name('profile.experiences');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
