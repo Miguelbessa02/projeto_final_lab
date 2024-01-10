@@ -24,27 +24,32 @@
                             <div class="relative w-full sm:w-1/2 md:w-1/4 lg:w-1/4 px-2 experience {{ $experience['category'] }}">
                                 <div class="w-full h-full m-0 bg-white rounded border border-black pl-4 pt-4 pb-20 pr-20">
 
-                                    <div>
+                                    <div class="mb-8">
                                         <img src="{{ $experience['image'] }}" alt="{{ $experience['title'] }}" class="w-full mb-2 rounded" />
                                         <h3 class="text-lg font-semibold">{{ $experience['title'] }}</h3>
                                         <p class="text-gray-700">Descrição: {{ $experience['description'] }}.</p>
                                         <p class="text-gray-800 font-bold">Preço: {{ $experience['price'] }}€</p>
                                         <p class="text-gray-800 font-bold">Morada: {{ $experience['address'] }}.</p>
-                                        <p class="text-gray-800 font-bold mb-6">Categoria: {{ $experience['category'] }}.</p>
+                                        <p class="text-gray-800 font-bold">Categoria: {{ $experience['category'] }}.</p>
+                                        <span class="text-gray-800 font-bold pr-1">Likes: {{ $experience->likes->count() }}</span>
                                     </div>
 
                                     <div class="absolute bottom-2">
-                                        <form method="post" action="{{ route('like.store') }}" class="mb-2">
+                                        <form method="post" action="{{ route('like.store') }}" class="inline">
                                             @csrf
                                             <input type="hidden" name="experience_id" value="{{ $experience['id'] }}">
-                                            <span class="text-gray-800 font-bold ml-2">Likes: {{ $experience->likes->count() }}</span>
                                             <button type="submit" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Like</button>
-                                            <button type="submit" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comprar</button>
+                                        </form>
+
+                                        <form action="{{ route('stripe.checkout') }}" method="POST" class="inline">
+                                            @csrf
+                                            <input type="hidden" name="experience_id" value="{{ $experience['id'] }}">
+                                            <button type="submit" id="checkout-live-button" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded mt-2">Comprar</button>
                                         </form>
                                         
-                                        <div class="flex space-x-2">
+                                        <div class="flex mt-2 space-x-2">
                                             <a href="{{ route('comment.create', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comentar</a>
-                                            <a href="{{ route('experience.comments', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comentário</a>
+                                            <a href="{{ route('experience.comments', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comentários</a>
                                         </div>
                                     </div>
                             

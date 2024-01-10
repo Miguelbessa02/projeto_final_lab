@@ -4,6 +4,9 @@
             <a href="{{url('/dashboard')}}" class="text-black">Feed</a>
         </li>
         <li class="mr-20">
+            <a href="{{url('/profile')}}" class="text-black">Perfil</a>
+        </li>
+        <li class="mr-20">
             <a href="{{url('/about')}}" class="text-black">About Us</a>
         </li>
         <li class="mr-20">

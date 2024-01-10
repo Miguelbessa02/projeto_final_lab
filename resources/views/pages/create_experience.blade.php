@@ -7,7 +7,7 @@
 
     <div class="flex items-center justify-center ">
         <div class="bg-white mt-4 mb-20">
-            <h2 class="text-2xl font-bold my-2 ml-10 ">Create New Experience:</h2>
+            <h2 class="text-2xl font-bold my-2 ml-10 ">Crie um anúncio novo:</h2>
 
             <form method="post" action="{{ route('dashboard') }}" class="bg-white shadow-md rounded px-20 pb-8 mb-4 mx-6">
                 @csrf

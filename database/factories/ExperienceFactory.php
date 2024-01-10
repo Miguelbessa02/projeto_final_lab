@@ -32,14 +32,11 @@ class ExperienceFactory extends Factory
 
         return [
             'user_id' => User::all()->random()->id,
-            'city_id' => City::all()->random()->id,
-            'category_id' => Category::all()->random()->id,
             'title' => $title,
             'description' => $description,
             'price' => $price,
             'address' => $address,
             'category' => $category,
-            'creation_date' => Carbon::now()
         ];
     }
 }
