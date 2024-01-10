@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,13 +50,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/like', [LikeController::class, 'store'])->name('like.store');
 });
 
-
 //Rotas perfil:
 Route::middleware('auth')->group(function () {
     Route::get('/profile/experiences', [ProfileController::class, 'get'])->name('profile.experiences');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+//Rotas stripe:
+Route::middleware('auth')->group(function () {
+    Route::post('/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');
 });
 
 require __DIR__.'/auth.php';

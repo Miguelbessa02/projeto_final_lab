@@ -41,7 +41,7 @@
                                             <button type="submit" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Like</button>
                                         </form>
 
-                                        <form  method="POST" class="inline">
+                                        <form action="{{ route('stripe.checkout') }}" method="POST" class="inline">
                                             @csrf
                                             <input type="hidden" name="experience_id" value="{{ $experience['id'] }}">
                                             <button type="submit" id="checkout-live-button" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded mt-2">Comprar</button>
@@ -49,7 +49,7 @@
                                         
                                         <div class="flex mt-2 space-x-2">
                                             <a href="{{ route('comment.create', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comentar</a>
-                                            <a href="{{ route('experience.comments', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comentário</a>
+                                            <a href="{{ route('experience.comments', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comentários</a>
                                         </div>
                                     </div>
                             
