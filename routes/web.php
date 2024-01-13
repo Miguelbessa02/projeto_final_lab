@@ -43,6 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/experiences/{experience_id}/comments', [CommentController::class, 'showComments'])->name('experience.comments');
     Route::get('/experiences/{experience_id}/comment/create', [CommentController::class, 'create'])->name('comment.create');
     Route::post('/experiences/{experience_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 // Rotas para likes
