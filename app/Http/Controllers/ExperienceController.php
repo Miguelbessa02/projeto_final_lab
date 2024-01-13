@@ -38,11 +38,16 @@ class ExperienceController extends Controller
             'price' => ['required', 'numeric', 'min:0'],
             'address' => ['required', 'string', 'max:255'],
             'category' => ['required', 'string', 'in:sport,culture,nature,gastronomy'],
-            
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ]);
 
         // Obter o ID do usuário autenticado
         $user_id = Auth::id();
+        $imagePath = null;
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('experiences/images', 'public');
+        }
 
         $experience = Experience::create([
             'title' => $request->title,
@@ -51,6 +56,7 @@ class ExperienceController extends Controller
             'address' => $request->address,
             'category' => $request->category, 
             'user_id' => $user_id, 
+            'image' => $imagePath,
         ]);
 
         return redirect(RouteServiceProvider::HOME)->with('success', 'Experience created successfully!');

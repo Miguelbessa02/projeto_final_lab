@@ -25,7 +25,7 @@
                                 <div class="w-full h-full m-0 bg-white rounded border border-black pl-4 pt-4 pb-20 pr-20">
 
                                     <div class="mb-8">
-                                        <img src="{{ $experience['image'] }}" alt="{{ $experience['title'] }}" class="w-full mb-2 rounded" />
+                                        <img src="{{ asset('storage/' . $experience['image']) }}" alt="{{ $experience['title'] }}" class="w-full mb-2 rounded" />
                                         <h3 class="text-lg font-semibold">{{ $experience['title'] }}</h3>
                                         <p class="text-gray-700">Descrição: {{ $experience['description'] }}.</p>
                                         <p class="text-gray-800 font-bold">Preço: {{ $experience['price'] }}€</p>

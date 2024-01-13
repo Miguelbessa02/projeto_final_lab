@@ -18,6 +18,7 @@ class Experience extends Model
         'address',
         'category',
         'user_id',
+        'image', 
     ];
 
     public function user(): BelongsTo

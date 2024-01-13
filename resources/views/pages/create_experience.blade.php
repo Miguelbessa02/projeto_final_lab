@@ -9,8 +9,7 @@
         <div class="bg-white mt-4 mb-20">
             <h2 class="text-2xl font-bold my-2 ml-10 ">Crie um anúncio novo:</h2>
 
-            <form method="post" action="{{ route('dashboard') }}" class="bg-white shadow-md rounded px-20 pb-8 mb-4 mx-6">
-                @csrf
+            <form method="post" action="{{ route('dashboard') }}" enctype="multipart/form-data" class="bg-white shadow-md rounded px-20 pb-8 mb-4 mx-6">                @csrf
 
                 <div class="mb-2 ">
                     <label for="title" class="block text-gray-700 text-lg font-bold mb-2">Titulo:</label>
@@ -41,7 +40,10 @@
                         <option value="gastronomy">Gastronomy</option>
                     </select>
                 </div>
-
+                <div class="mb-4">
+                    <label for="image" class="block text-sm font-medium text-gray-700">Imagem da Experiência</label>
+                    <input type="file" name="image" id="image" accept="image/*">
+                </div>
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Criar Anuncio</button>
             </form>
         </div>
