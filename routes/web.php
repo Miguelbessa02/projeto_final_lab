@@ -4,7 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
-use App\Http\Controllers\StripeController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\FavoriteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,15 +53,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 //Rotas perfil:
 Route::middleware('auth')->group(function () {
-    Route::get('/profile/experiences', [ProfileController::class, 'get'])->name('profile.experiences');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/experiences', [ProfileController::class, 'getUserExperiences'])->name('profile.experiences');
+    Route::get('/profile/transactions', [TransactionController::class, 'getUserTransactions'])->name('profile.transactions');
+    Route::get('/profile/favorites', [FavoriteController::class, 'getUserFavorites'])->name('profile.favorites');
 });
 
-//Rotas stripe:
+//Rotas transaction:
 Route::middleware('auth')->group(function () {
-    Route::post('/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');
+    Route::post('/checkout', [TransactionController::class, 'checkout'])->name('stripe.checkout');
+});
+
+//Rotas favoritos:
+Route::middleware('auth')->group(function () {
+    Route::post('/favorito', [FavoriteController::class, 'store'])->name('favorito.store');
 });
 
 require __DIR__.'/auth.php';

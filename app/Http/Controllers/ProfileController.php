@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\Experience;
 
 class ProfileController extends Controller
 {
@@ -58,8 +59,15 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function get(Request $request)
+    /**
+     * Aparecer os anúncios criados pelo user no perfil do mesmo.
+     */
+    public function getUserExperiences(Request $request)
     {
-        return view('profile.anuncios_users');
+        $userId = Auth::id();
+        $experiences = Experience::where('user_id', $userId)->get();
+        return view('profile.experiences', compact('experiences'));
     }
+
+    
 }

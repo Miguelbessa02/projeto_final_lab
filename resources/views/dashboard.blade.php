@@ -46,6 +46,12 @@
                                             <input type="hidden" name="experience_id" value="{{ $experience['id'] }}">
                                             <button type="submit" id="checkout-live-button" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded mt-2">Comprar</button>
                                         </form>
+
+                                        <form action="{{ route('favorito.store') }}" method="POST" class="inline">
+                                            @csrf
+                                            <input type="hidden" name="experience_id" value="{{ $experience['id'] }}">
+                                            <button type="submit" id="checkout-live-button" class="text-yellow-500 no-underline border-2 border-yellow-500 px-2 py-1 rounded mt-2">Favorito</button>
+                                        </form>
                                         
                                         <div class="flex mt-2 space-x-2">
                                             <a href="{{ route('comment.create', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comentar</a>

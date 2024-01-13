@@ -4,7 +4,7 @@
             <a href="{{url('/dashboard')}}" class="text-black">Feed</a>
         </li>
         <li class="mr-20">
-            <a href="{{url('/profile')}}" class="text-black">Perfil</a>
+            <a href="{{url('/profile/experiences')}}" class="text-black">Perfil</a>
         </li>
         <li class="mr-20">
             <a href="{{url('/about')}}" class="text-black">About Us</a>
@@ -13,7 +13,7 @@
             <a href="{{url('/ajuda')}}" class="text-black">Ajuda</a>
         </li>
         <li class="mr-20">
-            <a href="{{url('/dashboard/create')}}" class="text-black">Criar Anuncio</a>
+            <a href="{{url('/dashboard/create')}}" class="text-black">Criar Anúncio</a>
         </li>
     </ul>
 </nav>
