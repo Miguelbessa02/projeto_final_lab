@@ -87,10 +87,18 @@ class ExperienceController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Experience $experience)
-    {
-        //
+ * Remove the specified resource from storage.
+ */
+public function destroy(Experience $experience)
+{
+    // Verificar se o usuário autenticado é o autor da experiência
+    if (Auth::id() == $experience->user_id) {
+        // Excluir a experiência
+        $experience->delete();
+        return redirect()->back()->with('success', 'Experiência apagada com sucesso!');
+    } else {
+        return redirect()->back()->with('error', 'Você não tem permissão para apagar esta experiência.');
     }
+}
+
 }

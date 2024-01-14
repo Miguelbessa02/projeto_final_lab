@@ -37,6 +37,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [ExperienceController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/create', [ExperienceController::class, 'create'])->name('dashboard.create');
     Route::post('/dashboard', [ExperienceController::class, 'store'])->name('dashboard');
+    Route::delete('/experiences/{experience}', [ExperienceController::class, 'destroy'])->name('experiences.destroy');
 });
 
 // Rotas comentarios anuncios:
