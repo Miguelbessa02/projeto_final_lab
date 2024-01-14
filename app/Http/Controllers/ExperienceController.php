@@ -91,13 +91,13 @@ class ExperienceController extends Controller
  */
 public function destroy(Experience $experience)
 {
-    // Verificar se o usuário autenticado é o autor da experiência
+    // Verificar se o usuário autenticado é o autor do anúncio
     if (Auth::id() == $experience->user_id) {
-        // Excluir a experiência
+        // Apagar o anúncio
         $experience->delete();
         return redirect()->back()->with('success', 'Experiência apagada com sucesso!');
     } else {
-        return redirect()->back()->with('error', 'Você não tem permissão para apagar esta experiência.');
+        return redirect()->back()->with('error', 'Não tens permissão para apagar esta experiência.');
     }
 }
 
