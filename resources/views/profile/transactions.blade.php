@@ -17,12 +17,12 @@
                     </div>
                     
                     <div id="activities-section" class="flex flex-wrap -mx-2">
-                        @foreach ($purchasedExperiences as $transaction)
+                        @foreach ($purchasedExperiences as $index => $transaction)
                             <div class="relative w-full sm:w-1/2 md:w-1/4 lg:w-1/4 px-2">
                                 <div class="w-full h-full m-0 bg-white rounded border border-black pl-4 pt-4  pr-20">
                                     
                                     <div class="mb-8">
-                                        <img src="{{ asset('storage/' . $experience['image']) }}" alt="{{ $experience['title'] }}" class="w-full mb-2 rounded" />
+                                        <img src="{{ asset('storage/' . $transaction->experience['image']) }}" alt="{{ $transaction->experience['title'] }}" class="w-full mb-2 rounded" />
                                         <h3 class="text-lg font-semibold">{{ $transaction->experience->title }}</h3>
                                         <p class="text-gray-700">Descrição: {{ $transaction->experience->description }}.</p>
                                         <p class="text-gray-800 font-bold">Preço: {{ $transaction->experience->price }}€</p>
@@ -32,6 +32,11 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            @if (($index + 1) % 4 == 0)
+                                <div class="w-full my-4"></div>
+                            @endif
                         @endforeach
                     </div>
                     @else

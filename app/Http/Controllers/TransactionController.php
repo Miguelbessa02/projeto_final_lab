@@ -12,6 +12,7 @@ use App\Http\Controllers\ExperienceController;
 class TransactionController extends Controller
 {
 
+    //stripe interface and store in trasaction database the user and experience bought
     public function checkout(Request $request)
     {
         $experienceId = $request->input('experience_id');
@@ -54,15 +55,7 @@ class TransactionController extends Controller
         return redirect()->away($session->url);
     }
 
-    /**
-     * Aparecer os anúncios comprados pelo user no perfil do mesmo.
-     */
-    public function getUserTransactions()
-    {
-        $userId = Auth::id();
-        $transactions = Transaction::where('user_id', $userId)->get();
-        return view('profile.transactions', ['purchasedExperiences' => $transactions]);
-    }
+    
 
     /**
      * Display a listing of the resource.

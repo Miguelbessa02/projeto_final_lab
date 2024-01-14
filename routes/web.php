@@ -58,8 +58,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profile/experiences', [ProfileController::class, 'getUserExperiences'])->name('profile.experiences');
-    Route::get('/profile/transactions', [TransactionController::class, 'getUserTransactions'])->name('profile.transactions');
-    Route::get('/profile/favorites', [FavoriteController::class, 'getUserFavorites'])->name('profile.favorites');
+    Route::get('/profile/transactions', [ProfileController::class, 'getUserTransactions'])->name('profile.transactions');
+    Route::get('/profile/favorites', [ProfileController::class, 'getUserFavorites'])->name('profile.favorites');
 });
 
 //Rotas transaction:

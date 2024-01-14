@@ -12,16 +12,6 @@ class FavoriteController extends Controller
 {
 
     /**
-     * Aparecer os anúncios favoritos pelo user no perfil do mesmo.
-     */
-    public function getUserFavorites(Request $request)
-    {
-        $userId = Auth::id();
-        $favorites = Favorite::where('user_id', $userId)->get();
-        return view('profile.favorites', compact('favorites'));
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)

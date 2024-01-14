@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Experience;
+use App\Models\Transaction;
+use App\Models\Favorite;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -67,6 +70,26 @@ class ProfileController extends Controller
         $userId = Auth::id();
         $experiences = Experience::where('user_id', $userId)->get();
         return view('profile.experiences', compact('experiences'));
+    }
+
+    /**
+     * Aparecer os anúncios comprados pelo user no perfil do mesmo.
+     */
+    public function getUserTransactions()
+    {
+        $userId = Auth::id();
+        $transactions = Transaction::where('user_id', $userId)->get();
+        return view('profile.transactions', ['purchasedExperiences' => $transactions]);
+    }
+
+    /**
+     * Aparecer os anúncios favoritos pelo user no perfil do mesmo.
+     */
+    public function getUserFavorites(Request $request)
+    {
+        $userId = Auth::id();
+        $favorites = Favorite::where('user_id', $userId)->get();
+        return view('profile.favorites', compact('favorites'));
     }
 
     
