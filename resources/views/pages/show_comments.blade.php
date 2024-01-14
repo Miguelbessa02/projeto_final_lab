@@ -13,10 +13,18 @@
                 <div class="mb-4">
                     <strong>{{ $comment->user->name }}:</strong>
                     {{ $comment->comment }}
+
+                    @if(Auth::id() == $comment->user_id || Auth::user()->experiences->contains($comment->experience_id))
+                        <div class="inline-block ml-2">
+                            <form action="{{ route('comments.destroy', ['comment' => $comment]) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-500 border-2 border-red-500 px-3 py-0.2 rounded">Apagar</button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
             @endforeach
         </div>
     </div>
-    
-
 </x-app-layout>

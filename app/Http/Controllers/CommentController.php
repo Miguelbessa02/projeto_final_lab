@@ -85,7 +85,13 @@ class CommentController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Comment $comment)
-    {
-        //
+{
+    // Verificar se o user autenticado é o autor do comentário ou se o user autenticado é o dono do anúncio
+    if(Auth::id() == $comment->user_id || Auth::user()->experiences->contains($comment->experience_id)) {
+        $comment->delete();
+        return redirect()->back()->with('success', 'Comentário apagado com sucesso!');
+    } else {
+        return redirect()->back()->with('error', 'Você não tem permissão para apagar este comentário.');
     }
+}
 }

@@ -4,7 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
-use App\Http\Controllers\StripeController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\FavoriteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [ExperienceController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/create', [ExperienceController::class, 'create'])->name('dashboard.create');
     Route::post('/dashboard', [ExperienceController::class, 'store'])->name('dashboard');
+    Route::delete('/experiences/{experience}', [ExperienceController::class, 'destroy'])->name('experiences.destroy');
 });
 
 // Rotas comentarios anuncios:
@@ -43,6 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/experiences/{experience_id}/comments', [CommentController::class, 'showComments'])->name('experience.comments');
     Route::get('/experiences/{experience_id}/comment/create', [CommentController::class, 'create'])->name('comment.create');
     Route::post('/experiences/{experience_id}/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::delete('/comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 });
 
 // Rotas para likes
@@ -52,15 +55,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 //Rotas perfil:
 Route::middleware('auth')->group(function () {
-    Route::get('/profile/experiences', [ProfileController::class, 'get'])->name('profile.experiences');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile/experiences', [ProfileController::class, 'getUserExperiences'])->name('profile.experiences');
+    Route::get('/profile/transactions', [ProfileController::class, 'getUserTransactions'])->name('profile.transactions');
+    Route::get('/profile/favorites', [ProfileController::class, 'getUserFavorites'])->name('profile.favorites');
 });
 
-//Rotas stripe:
+//Rotas transaction:
 Route::middleware('auth')->group(function () {
-    Route::post('/checkout', [StripeController::class, 'checkout'])->name('stripe.checkout');
+    Route::post('/checkout', [TransactionController::class, 'checkout'])->name('stripe.checkout');
+});
+
+//Rotas favoritos:
+Route::middleware('auth')->group(function () {
+    Route::post('/favorito', [FavoriteController::class, 'store'])->name('favorito.store');
 });
 
 require __DIR__.'/auth.php';
