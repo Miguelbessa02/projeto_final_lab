@@ -6,11 +6,20 @@
     </x-slot>
 
     @if(session('success'))
-        <div class="alert alert-success">
+    <div id="successMessage" class="bg-white flex items-center justify-center mt-5 mx-auto max-w-md py-4 border-2 border-blue-500 rounded">
+        <div class="text-center font-bold text-xl">
             {{ session('success') }}
         </div>
-    @endif
+    </div>
 
+        <script>
+            setTimeout(function(){
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000); // 5000 milissegundos = 5 segundos
+        </script>
+
+    @endif
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
