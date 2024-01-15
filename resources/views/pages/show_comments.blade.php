@@ -14,7 +14,7 @@
                     <strong>{{ $comment->user->name }}:</strong>
                     {{ $comment->comment }}
 
-                    @if(Auth::id() == $comment->user_id || Auth::user()->experiences->contains($comment->experience_id))
+                    @if(Auth::id() == $comment->user_id || Auth::user()->experiences->contains($comment->experience_id) || Auth::user()->is_admin)
                         <div class="inline-block ml-2">
                             <form action="{{ route('comments.destroy', ['comment' => $comment]) }}" method="post">
                                 @csrf

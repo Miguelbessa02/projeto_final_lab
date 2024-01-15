@@ -87,7 +87,7 @@ class CommentController extends Controller
     public function destroy(Comment $comment)
 {
     // Verificar se o user autenticado é o autor do comentário ou se o user autenticado é o dono do anúncio
-    if(Auth::id() == $comment->user_id || Auth::user()->experiences->contains($comment->experience_id)) {
+    if(Auth::id() == $comment->user_id || Auth::user()->experiences->contains($comment->experience_id) || Auth::user()->is_admin) {
         $comment->delete();
         return redirect()->back()->with('success', 'Comentário apagado com sucesso!');
     } else {

@@ -22,13 +22,13 @@
                                 <div class="w-full h-full m-0 bg-white rounded border border-black pl-4 pt-4  pr-20">
                                     
                                     <div class="mb-8">
-                                        <img src="{{ asset('storage/' . $transaction->experience['image']) }}" alt="{{ $transaction->experience['title'] }}" class="w-full mb-2 rounded" />
+                                        <img src="{{ asset('storage/' . $transaction->experience->image) }}" alt="{{ $transaction->experience->title }}" class="w-full mb-2 rounded" />
                                         <h3 class="text-lg font-semibold">{{ $transaction->experience->title }}</h3>
                                         <p class="text-gray-700">Descrição: {{ $transaction->experience->description }}.</p>
                                         <p class="text-gray-800 font-bold">Preço: {{ $transaction->experience->price }}€</p>
                                         <p class="text-gray-800 font-bold">Morada: {{ $transaction->experience->address }}.</p>
                                         <p class="text-gray-800 font-bold">Categoria: {{ $transaction->experience->category }}.</p>
-                                        <p class="text-green-500 font-bold">Trasação: {{ $transaction->status }}.</p>
+                                        <p class="text-green-500 font-bold">Transação: {{ $transaction->status }}.</p>
                                     </div>
                                 </div>
                             </div>

@@ -22,7 +22,7 @@
                                 <div class="w-full h-full m-0 bg-white rounded border border-black pl-4 pt-4 pb-20 pr-20">
 
                                     <div class="mb-8">
-                                        <img src="{{ asset('storage/' . $experience['image']) }}" alt="{{ $experience['title'] }}" class="w-full mb-2 rounded" />
+                                        <img src="{{ asset('storage/' . $experience->image) }}" alt="{{ $experience->title }}" class="w-full mb-2 rounded" />
                                         <h3 class="text-lg font-semibold">{{ $experience->title }}</h3>
                                         <p class="text-gray-700">Descrição: {{ $experience->description }}.</p>
                                         <p class="text-gray-800 font-bold">Preço: {{ $experience->price }}€</p>
@@ -34,11 +34,11 @@
                                     <div class="absolute bottom-2">
                                         <form method="post" action="{{ route('like.store') }}" class="inline">
                                             @csrf
-                                            <input type="hidden" name="experience_id" value="{{ $experience['id'] }}">
+                                            <input type="hidden" name="experience_id" value="{{ $experience->id }}">
                                             <button type="submit" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Like</button>
                                         </form>
 
-                                        <!-- Formulário de exclusão -->
+                                        
                                         <form method="post" action="{{ route('experiences.destroy', ['experience' => $experience->id]) }}" class="inline">
                                             @csrf
                                             @method('DELETE')
@@ -46,8 +46,8 @@
                                         </form>
 
                                         <div class="flex mt-2 space-x-2">
-                                            <a href="{{ route('comment.create', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comentar</a>
-                                            <a href="{{ route('experience.comments', ['experience_id' => $experience['id']]) }}" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comentários</a>
+                                            <a href="{{ route('comment.create', ['experience_id' => $experience->id]) }}" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comentar</a>
+                                            <a href="{{ route('experience.comments', ['experience_id' => $experience->id]) }}" class="text-blue-500 no-underline border-2 border-blue-500 px-2 py-1 rounded">Comentários</a>
                                         </div>
                                     </div>
 
