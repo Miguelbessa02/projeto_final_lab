@@ -91,8 +91,8 @@ class ExperienceController extends Controller
  */
 public function destroy(Experience $experience)
 {
-    // Verificar se o usuário autenticado é o autor do anúncio
-    if (Auth::id() == $experience->user_id) {
+    // Verificar se o user autenticado é o autor do anúncio ou se o user é admin
+    if (Auth::id() == $experience->user_id || Auth::user()->is_admin) {
         // Apagar o anúncio
         $experience->delete();
         return redirect()->back()->with('success', 'Experiência apagada com sucesso!');

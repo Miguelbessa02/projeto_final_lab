@@ -52,7 +52,7 @@ class TransactionController extends Controller
 
         $transaction->save();
 
-        return redirect()->away($session->url);
+        return redirect()->away($session->url)->with('success', 'Transação efetuada com sucesso!');
     }
 
     
